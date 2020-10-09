@@ -2,28 +2,39 @@
 using namespace std;
 
 class Complex{
-	float real1, imag1, real2, imag2, real, imag;
+	int real, imag;
 	public:
-		void getdata()
+		Complex()
 		{
-			cout << "Enter first complex number: "<< endl;
-			cin >> real1 >> imag1;
-			cout << "Enter second complex number: "<< endl;
-			cin >> real2 >> imag2;
+			real = 0;
+			imag = 0;
 		}
-		void addshow()
+		Complex(int r, int i)
 		{
-			real = real1 + real2;
-			imag = imag1 + imag2;
-			cout << "The sum of two complex no is: " ;
-			cout << real << "+i" << imag; 
+			real = r;
+			imag = i;
 		}
+		
+		void showdata()
+		{
+			cout << "The sum is: " ;
+			cout << real << "+i" << imag;
+		}
+		friend Complex add(Complex, Complex);
+		
 };
+Complex add(Complex c1, Complex c2)
+{
+	Complex temp;
+	temp.real = c1.real + c2.real;
+	temp.imag = c1.imag + c2.imag;
+	return temp;
+}
 
 int main()
 {
-	Complex c;
-	c.getdata();
-	c.addshow();
+	Complex c1(3, 5), c2(4, 7), c3;
+	c3 = add(c1, c2);
+	c3.showdata();
 	return 0;
 }
